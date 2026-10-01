@@ -1,0 +1,13 @@
+.run/
+logs/
+__pycache__/
+*.pyc
+workspaces/.structurizr/
+workspaces/*/.backups/
+.DS_Store
+Thumbs.db
+dist/*
+!dist/.gitkeep
+workspaces/*
+!workspaces/.gitkeep
+tmp
