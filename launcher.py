@@ -231,7 +231,8 @@ def build(offline=False):
         repo = ROOT / 'structurizr'
         wrapper = repo / ('mvnw.cmd' if os.name == 'nt' else 'mvnw')
         args = [str(wrapper), '-B', '-ntp', '-pl', 'structurizr-application,structurizr-mcp', '-am',
-                'package', '-DskipTests', '-Dmaven.javadoc.skip=true', '-Dgpg.skip=true', '-Pexclude-playwright']
+                'package', '-DskipTests', '-Dmaven.compiler.useIncrementalCompilation=false',
+                '-Dmaven.javadoc.skip=true', '-Dgpg.skip=true', '-Pexclude-playwright']
         if offline:
             args.append('-o')
         subprocess.run(args, cwd=repo, env=env, check=True)

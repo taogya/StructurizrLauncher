@@ -168,13 +168,13 @@ MCPサーバー自身がLLMを実行するわけではありません。完全�
 
 upstream: https://github.com/structurizr/structurizr.git
 
-ベースコミット: `f828a297dc693e08115b7e5b51dba4a83d8148c2`（2026-09-19）。
-変更はclone内に未コミット差分として残してあり、`git -C structurizr diff` で確認できます。
-追加ファイルは `git -C structurizr status --short` で確認できます。
-自動pull/resetは実行しません。
+`structurizr/` は fork `taogya/structurizr` の `launcher` ブランチを指す submodule です。
+ランチャー向けの変更はそのブランチにコミット済みで、`git -C structurizr log` / `git -C structurizr diff main...launcher` で確認できます。
+upstream への自動pull/resetは実行しません。
 
 依存を取得済みなら `build.cmd --offline` / `./build.sh --offline` でMavenのオフラインビルドが可能です。
 初回は依存とMaven wrapperの取得が必要です。`build` はテストをスキップしてパッケージを作成します。
+クリーンな checkout での増分コンパイラの不具合（`target/classes` にクラスが欠落し `NoSuchFileException` 等で失敗する）を避けるため、`build` は `-Dmaven.compiler.useIncrementalCompilation=false` を付与します。
 追加MCPユニットテストの実行例:
 
 ```bash
