@@ -1,0 +1,4 @@
+[submodule "structurizr"]
+	path = structurizr
+	url = https://github.com/taogya/structurizr.git
+	branch = launcher
