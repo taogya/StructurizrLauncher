@@ -8,7 +8,7 @@ UI は `http://127.0.0.1:8080/`、MCP は `http://127.0.0.1:8081/mcp` で起動�
 
 | ファイル・フォルダ | 用途 |
 |---|---|
-| `structurizr/` | upstream を clone したソースと今回の変更（Git情報を含む） |
+| `structurizr/` | Structurizr 本体のソース（Git submodule。fork `taogya/structurizr` の `launcher` ブランチ） |
 | `workspaces/1/workspace.dsl` | ワークスペース1のDSL |
 | `workspaces/2/workspace.dsl` | ワークスペース2のDSL |
 | `start.cmd` / `start.sh` | UIとMCPをまとめてバックグラウンド起動 |
@@ -20,6 +20,35 @@ UI は `http://127.0.0.1:8080/`、MCP は `http://127.0.0.1:8081/mcp` で起動�
 | `logs/` | 起動時に生成されるログ |
 | `.run/` | ランチャー管理用の一時情報（手作業で編集しない） |
 | `tests/` | ローカル結合検証スクリプト |
+
+## 取得（Clone）
+
+`structurizr/` は Git submodule です。本体ソースを含めて取得するため、submodule ごと clone します。
+
+```bash
+git clone --recurse-submodules https://github.com/taogya/StructurizrLauncher.git
+cd StructurizrLauncher
+```
+
+`--recurse-submodules` を付け忘れて clone した場合は、後から取得します。
+
+```bash
+git submodule update --init --recursive
+```
+
+submodule は fork `taogya/structurizr` の `launcher` ブランチを追跡します。
+本体ソースを最新の追跡ブランチへ更新する場合:
+
+```bash
+git submodule update --remote structurizr
+```
+
+submodule の内容（`structurizr/` のコミット）を更新したら、親リポジトリ側でその参照をコミットしてください。
+
+```bash
+git add structurizr
+git commit -m "Update structurizr submodule"
+```
 
 ## 必要環境
 
